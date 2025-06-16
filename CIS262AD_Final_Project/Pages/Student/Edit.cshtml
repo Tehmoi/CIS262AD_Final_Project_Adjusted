@@ -1,0 +1,50 @@
+﻿@page
+@model CIS262AD_Final_Project.Pages.Student.EditModel
+@{
+}
+<body style="background-color:antiquewhite"> 
+    
+</body>
+<h1>Student</h1>
+
+@if (Model.ErrorDetec)
+{
+    <strong>Error Detected! Please fill all boxes</strong>
+}
+@if (Model.IsSuccessUpdate)
+{
+    <p>
+        You Updated: <!--Model.BusinessName owned by--> @Model.FirstName @Model.LastName
+    </p>
+}
+
+@if (Model.IsSuccess)
+{
+    <p>
+        You Created: <!--Model.BusinessName owned by--> @Model.FirstName @Model.LastName 
+    </p>
+}
+else
+{
+    <p>Student ID: @Model.StudentId</p>
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="StudentId"></label><br />
+            <input asp-for="StudentId" class="form-control">
+            <br />
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName"></label><br />
+            <input asp-for="FirstName" class="form-control">
+            <br />
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName"></label><br />
+            <input asp-for="LastName" class="form-control">
+           <br />
+        </div>
+<button>Submit</button>
+    </form>
+}

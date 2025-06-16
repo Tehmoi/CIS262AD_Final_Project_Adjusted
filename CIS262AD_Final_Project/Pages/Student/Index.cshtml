@@ -1,0 +1,50 @@
+﻿@page
+@model CIS262AD_Final_Project.Pages.Student.IndexModel
+@{
+}
+<table cellpadding="5">
+    <tr>
+        <th>
+            Student Id
+        </th>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        
+        <th>
+            Edit
+        </th>
+        <th>
+            Delete
+        </th>
+    </tr>
+    @foreach (School.Dal.Student student in Model.Students)
+    {
+        <tr>
+            <td>
+                @student.StudentId
+            </td>
+            <td>
+                @student.FirstName
+            </td>
+            <td>
+                @student.LastName
+            </td>
+            @* <td>
+                <a asp-page="/Exams" asp-route-id="@student.StudentId">View Exams</a>
+            </td> *@
+            <td>
+                <a asp-page="./Edit" asp-route-id="@student.StudentId">Edit</a>
+            </td>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@student.StudentId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <a asp-page="./Edit">Add a New Student</a>
+</div>

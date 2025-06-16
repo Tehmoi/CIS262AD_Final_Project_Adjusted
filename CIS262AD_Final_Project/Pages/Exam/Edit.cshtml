@@ -1,0 +1,45 @@
+﻿@page
+@model CIS262AD_Final_Project.Pages.Exam.EditModel
+@{
+}
+@if (Model.ErrorDetec)
+{
+    <strong>Error Detected! Please fill all boxes</strong>
+}
+@if (Model.IsSuccessUpdate)
+{
+    <p>
+        You Updated:  @Model.ExamId @Model.StudentId @Model.Score
+    </p>
+}
+
+@if (Model.IsSuccess)
+{
+    <p>
+        You Created:  Exam: @Model.ExamId Student: @Model.StudentId Scored: @Model.Score
+    </p>
+}
+else
+{
+    <p>Student ID: @Model.StudentId</p>
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="ExamId"></label><br />
+            <input asp-for="ExamId" class="form-control">
+            <br />
+        </div>
+        <div class="form-group">
+            <label asp-for="StudentId"></label><br />
+            <input asp-for="StudentId" class="form-control">
+            <br />
+        </div>
+        <div class="form-group">
+            <label asp-for="Score"></label><br />
+            <input asp-for="Score" class="form-control">
+            <br />
+        </div>
+        <button>Submit</button>
+    </form>
+}

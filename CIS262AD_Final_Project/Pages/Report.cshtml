@@ -1,0 +1,61 @@
+﻿@page
+@model CIS262AD_Final_Project.Pages.ReportModel
+@{
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js">
+</script>
+
+<h2>Grades Earned</h2>
+<table>
+    <tr>
+        <th>Score</th>
+        <th>Grade</th>
+    </tr>
+
+    @foreach (var row in Model.ReportRows)
+    {
+        <tr>
+            <td>@row.Score</td>
+            <td>@row.Grade</td>
+        </tr>
+    }
+</table>
+
+<h2>Grades Reported (Bar Chart, Organized)</h2>
+<div style="max-height:400px;">
+    <canvas id="myChart" height="400">
+    </canvas>
+</div>
+<script>
+    let data = @Json.Serialize(Model.ReportRows);
+
+    const chartData = {
+        labels: data.map(o => o.grade),
+        datasets: [{
+            label: 'Grades by Letter',
+            data: data.map(o => o.score),
+            backgroundColor: [
+                'red',
+                'orange',
+                'green',
+                'blue',
+                'violet',
+               
+            ],
+            hoverOffset: 4
+        }]
+    };
+    //sorting list attempts
+
+    //end of sorting list attempt
+    const config = {
+        type: 'bar',
+        data: chartData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    }
+    new Chart("myChart", config);
+
+</script>
